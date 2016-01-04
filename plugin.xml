@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  id="com.ict.ivita-utils"
+    version="0.0.1">
+    <name>FeaturesPlugin</name>
+    <description>FeaturesPlugin Description</description>
+    <author>mingyuyi</author>
+    <license>Apache 2.0 License</license>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <js-module src="www/featuresPlugin.js" name="FeaturesPlugin">
+        <clobbers target="FeaturesPlugin" />
+    </js-module>
+    <platform name="android">
+        <source-file src="src/android/FeaturesPlugin.java" target-dir="src/com/ydcun/ivita/util" />
+		<source-file src="src/android/utils/Features.java" target-dir="src/com/ydcun/ivita/util" />
+		<source-file src="src/android/utils/Complex.java" target-dir="src/com/ydcun/ivita/util" />
+		<source-file src="src/android/utils/FFT.java" target-dir="src/com/ydcun/ivita/util" />
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FeaturesPlugin">
+                <param name="android-package" value="com.ydcun.ivita.util.FeaturesPlugin"/>
+            </feature>
+        </config-file>
+    </platform>
+</plugin>
