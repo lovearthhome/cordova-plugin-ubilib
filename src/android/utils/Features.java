@@ -115,10 +115,7 @@ public class Features{
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = data[i];
-		}
-		for (int i = 1; i < length; i++)
-		{
-			Sum = Sum + copydata[i];
+			Sum+=copydata[i];
 		}
 		for (int i = 0; i < length; i++)
 		{
@@ -141,10 +138,7 @@ public class Features{
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = data[i];
-		}
-		for (int i = 1; i < length; i++)
-		{
-			Sum = Sum + copydata[i];
+			Sum+=copydata[i];
 		}
 		for (int i = 0; i < length; i++)
 		{
@@ -168,10 +162,7 @@ public class Features{
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = data[i];
-		}
-		for (int i = 1; i < length; i++)
-		{
-			Sum = Sum + copydata[i];
+			Sum+=copydata[i];
 		}
 		for (int i = 0; i < length; i++)
 		{
