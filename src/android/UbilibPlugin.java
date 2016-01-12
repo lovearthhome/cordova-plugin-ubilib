@@ -40,7 +40,7 @@ public class UbilibPlugin extends CordovaPlugin {
 			double mcr = Features.meanCrossingsRate(As);
 
 			double dev =Features.standardDeviation(As);
-
+			double mean =Features.mean(As);
 
 
 			double[] fft=Features.fft(As);
@@ -58,6 +58,7 @@ public class UbilibPlugin extends CordovaPlugin {
 			JSONObject jo = new JSONObject();
 			jo.put("min",min);
 			jo.put("max",max);
+			jo.put("mean",mean);
 			jo.put("mcr",mcr);
 			jo.put("dev",dev);
 			jo.put("entropy",entropy);
