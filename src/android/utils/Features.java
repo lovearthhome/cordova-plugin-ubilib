@@ -1,7 +1,5 @@
 package com.ydcun.ivita.util;
 
-import com.ydcun.exception.InfoException;
-
 public class Features{
 
 	/**求数组最小值 double**/
