@@ -39,7 +39,7 @@ public class UbilibPlugin extends CordovaPlugin {
 			double mcr = Features.meanCrossingsRate(As);
 
 			double dev =Features.standardDeviation(As);
-
+			double mean =Features.mean(As);
 
 			double rms =Features.rms(As);//均方根平均值
 			
@@ -53,7 +53,42 @@ public class UbilibPlugin extends CordovaPlugin {
 
 			double median =Features.median(As);//中位数
 
+<<<<<<< HEAD
 			double tenergy =Features.tenergy(As); //FFT
+=======
+		
+			JSONArray ja=new JSONArray();
+			JSONObject jo = new JSONObject();
+			jo.put("min",min);
+			jo.put("max",max);
+			jo.put("mean",mean);
+			jo.put("mcr",mcr);
+			jo.put("dev",dev);
+			jo.put("entropy",entropy);
+			jo.put("energy",energy);
+			jo.put("centroid",centroid);
+			jo.put("spp",spp);
+			ja.put(jo);
+			//不要修改以下的代码
+			callbackContext.success(ja);
+			return true;
+		}else if (ACTION_GP2.equals(action)) {
+			JSONArray arg0 =args.getJSONArray(0);
+			double[] As = new double[128];
+			for (int i = 0; i < arg0.length(); i++) {
+				As[i] = arg0.getDouble(i);
+			}
+
+			double min =Features.minimum(As);
+			
+			double max =Features.maximum(As);
+
+			double mean =Features.mean(As);
+			
+			double mcr = Features.meanCrossingsRate(As);
+
+			double dev =Features.standardDeviation(As);
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
 
 			double[] fft=Features.fft(As);
 
@@ -124,31 +159,5 @@ public class UbilibPlugin extends CordovaPlugin {
 		callbackContext.error("failure");
 		return false;
 	}
-/*
-	public double[] fft(JSONArray list) {
-		int len=list.length();
-		Complex[] theList = new Complex[2*len];
-		for (int i = 0; i < len; i++) {
-			theList[i] = new Complex(list[i], 0);
-		}
-		for (int i = len; i < 2*len; i++) {
-			theList[i] = new Complex(0, 0);
-		}
-		
-		// fft
-		Complex[] Y = FFT.fft(theList);
-		
-		// 
-		for (int i = 0; i < Y.length; i++) {
-			Y[i] = Y[i].times(1/len);
-		}
-		
-		double[] fftSeries = new double[len/2];
-		for (int i = 1, j = 0; i < len/2 + 1; i++, j++) {
-			fftSeries[j] = 2 * theList[i].abs();
-		}
-	
-		return fftSeries;
-	}
-	*/
+
 }

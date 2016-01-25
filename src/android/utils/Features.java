@@ -131,9 +131,14 @@ public class Features{
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = data[i];
+<<<<<<< HEAD
 			Sum +=copydata[i];
 		}
 		double avg = Sum/length;
+=======
+			Sum+=copydata[i];
+		}
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = copydata[i] - avg;
@@ -157,9 +162,14 @@ public class Features{
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = data[i];
+<<<<<<< HEAD
 			Sum +=copydata[i];
 		}
 		float avg = Sum/length;
+=======
+			Sum+=copydata[i];
+		}
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
 		for (int i = 0; i < length; i++)
 		{
 			copydata[i] = copydata[i] - avg;
@@ -173,7 +183,33 @@ public class Features{
 		return num / length;
 	}
 
+<<<<<<< HEAD
 
+=======
+	/**求数组过均值率**/
+	public static double meanCrossingsRate(int data[]){
+		int length = data.length;
+		double Sum = 0;
+		double num = 0;
+		double[] copydata = new double[length];
+		for (int i = 0; i < length; i++)
+		{
+			copydata[i] = data[i];
+			Sum+=copydata[i];
+		}
+		for (int i = 0; i < length; i++)
+		{
+			copydata[i] = copydata[i] - Sum / length;
+		}
+		for (int i = 0; i < length - 1; i++)
+		{
+			if (copydata[i] * copydata[i + 1]< 0){
+				num++;
+			}
+		}
+		return num / length;
+	}
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
 	
 	/**求double数组的标准差**/
 	public static double standardDeviation(double data[]){
@@ -708,6 +744,7 @@ public class Features{
 	
 		return fftSeries;
 	}	
+<<<<<<< HEAD
     
     /**
      * 均方根平均值
@@ -821,3 +858,6 @@ public class Features{
     }
     
 }
+=======
+}
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
