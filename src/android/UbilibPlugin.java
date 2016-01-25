@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class UbilibPlugin extends CordovaPlugin {
 	public static final String ACTION_GP = "getParams";
-	public static final String ACTION_GP2 = "getParams2";
 	public static final String ACTION_FFT = "fft";
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		if (ACTION_GP.equals(action)) {
@@ -42,17 +41,21 @@ public class UbilibPlugin extends CordovaPlugin {
 			double dev =Features.standardDeviation(As);
 			double mean =Features.mean(As);
 
+			double rms =Features.rms(As);//均方根平均值
+			
+			double sma =Features.sma(As);//信号幅值面积
 
-			double[] fft=Features.fft(As);
+			double iqr =Features.iqr(As);//四分卫距
 
-			double spp=Features.spp(fft);
+			double mad =Features.mad(As);//绝对平均差
 
-			double entropy =Features.entropy(fft); //FFT
+			double mean =Features.mean(As);//平均值
 
-			double energy =Features.energy(fft); //FFT
+			double median =Features.median(As);//中位数
 
-			double centroid =Features.centroid(fft); //FFT
-
+<<<<<<< HEAD
+			double tenergy =Features.tenergy(As); //FFT
+=======
 		
 			JSONArray ja=new JSONArray();
 			JSONObject jo = new JSONObject();
@@ -85,13 +88,11 @@ public class UbilibPlugin extends CordovaPlugin {
 			double mcr = Features.meanCrossingsRate(As);
 
 			double dev =Features.standardDeviation(As);
+>>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
 
 			double[] fft=Features.fft(As);
 
-			JSONArray fftArray=new JSONArray();
-			for(int i=0;i<fft.length;i++){
-				fftArray.put(fft[i]);
-			}
+
 
 			double spp=Features.spp(fft);
 
@@ -100,20 +101,44 @@ public class UbilibPlugin extends CordovaPlugin {
 			double energy =Features.energy(fft); //FFT
 
 			double centroid =Features.centroid(fft); //FFT
+			
+			double fdev =Features.standardDeviation(fft); //FFT
+
+			double fmean =Features.mean(fft); //FFT
+
+			double skew =Features.skew(fft); //FFT
+
+			double kurt =Features.kurt(fft); //FFT
 
 		
 			JSONArray ja=new JSONArray();
 			JSONObject jo = new JSONObject();
 			jo.put("min",min);
 			jo.put("max",max);
-			jo.put("mean",mean);
 			jo.put("mcr",mcr);
 			jo.put("dev",dev);
+			jo.put("rms",rms);
+			jo.put("sma",sma);
+			jo.put("iqr",iqr);
+			jo.put("mad",mad);
+			jo.put("mean",mean);
+			jo.put("median",median);
+			jo.put("tenergy",tenergy);
 			jo.put("entropy",entropy);
 			jo.put("energy",energy);
 			jo.put("centroid",centroid);
 			jo.put("spp",spp);
+			jo.put("fdev",fdev);
+			jo.put("fmean",fmean);
+			jo.put("skew",skew);
+			jo.put("kurt",kurt);
+
 			ja.put(jo);
+			
+			JSONArray fftArray=new JSONArray();
+			for(int i=0;i<fft.length;i++){
+				fftArray.put(fft[i]);
+			}
 			ja.put(fftArray);
 			//不要修改以下的代码
 			callbackContext.success(ja);
@@ -134,31 +159,5 @@ public class UbilibPlugin extends CordovaPlugin {
 		callbackContext.error("failure");
 		return false;
 	}
-/*
-	public double[] fft(JSONArray list) {
-		int len=list.length();
-		Complex[] theList = new Complex[2*len];
-		for (int i = 0; i < len; i++) {
-			theList[i] = new Complex(list[i], 0);
-		}
-		for (int i = len; i < 2*len; i++) {
-			theList[i] = new Complex(0, 0);
-		}
-		
-		// fft
-		Complex[] Y = FFT.fft(theList);
-		
-		// 
-		for (int i = 0; i < Y.length; i++) {
-			Y[i] = Y[i].times(1/len);
-		}
-		
-		double[] fftSeries = new double[len/2];
-		for (int i = 1, j = 0; i < len/2 + 1; i++, j++) {
-			fftSeries[j] = 2 * theList[i].abs();
-		}
-	
-		return fftSeries;
-	}
-	*/
+
 }
