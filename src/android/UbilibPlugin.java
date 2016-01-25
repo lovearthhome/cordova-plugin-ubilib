@@ -31,83 +31,25 @@ public class UbilibPlugin extends CordovaPlugin {
 			}
 			//不要修改以上的代码
 			//接下来的代码调用Features.java来获取数组As,Xs,Ys,Zs的各种特征值
-
-			double min =Features.minimum(As);
-			
-			double max =Features.maximum(As);
-			
-			double mcr = Features.meanCrossingsRate(As);
-
-			double dev =Features.standardDeviation(As);
-			double mean =Features.mean(As);
-
-			double rms =Features.rms(As);//均方根平均值
-			
-			double sma =Features.sma(As);//信号幅值面积
-
-			double iqr =Features.iqr(As);//四分卫距
-
-			double mad =Features.mad(As);//绝对平均差
-
-			double mean =Features.mean(As);//平均值
-
-			double median =Features.median(As);//中位数
-
-<<<<<<< HEAD
-			double tenergy =Features.tenergy(As); //FFT
-=======
-		
-			JSONArray ja=new JSONArray();
-			JSONObject jo = new JSONObject();
-			jo.put("min",min);
-			jo.put("max",max);
-			jo.put("mean",mean);
-			jo.put("mcr",mcr);
-			jo.put("dev",dev);
-			jo.put("entropy",entropy);
-			jo.put("energy",energy);
-			jo.put("centroid",centroid);
-			jo.put("spp",spp);
-			ja.put(jo);
-			//不要修改以下的代码
-			callbackContext.success(ja);
-			return true;
-		}else if (ACTION_GP2.equals(action)) {
-			JSONArray arg0 =args.getJSONArray(0);
-			double[] As = new double[128];
-			for (int i = 0; i < arg0.length(); i++) {
-				As[i] = arg0.getDouble(i);
-			}
-
-			double min =Features.minimum(As);
-			
-			double max =Features.maximum(As);
-
-			double mean =Features.mean(As);
-			
-			double mcr = Features.meanCrossingsRate(As);
-
-			double dev =Features.standardDeviation(As);
->>>>>>> 5d5f54b0aabc06638c50534cc7c1b32d70ceb3d2
-
 			double[] fft=Features.fft(As);
-
-
-
+			double min =Features.minimum(As);
+			double max =Features.maximum(As);
+			double mcr = Features.meanCrossingsRate(As);
+			double dev =Features.standardDeviation(As);
+			double rms =Features.rms(As);//均方根平均值
+			double sma =Features.sma(As);//信号幅值面
+			double iqr =Features.iqr(As);//四分卫距
+			double mad =Features.mad(As);//绝对平均差
+			double mean =Features.mean(As);//平均值
+			double median =Features.median(As);//中位数
+			double tenergy =Features.tenergy(As); //FFT
 			double spp=Features.spp(fft);
-
 			double entropy =Features.entropy(fft); //FFT
-
 			double energy =Features.energy(fft); //FFT
-
 			double centroid =Features.centroid(fft); //FFT
-			
 			double fdev =Features.standardDeviation(fft); //FFT
-
 			double fmean =Features.mean(fft); //FFT
-
 			double skew =Features.skew(fft); //FFT
-
 			double kurt =Features.kurt(fft); //FFT
 
 		
