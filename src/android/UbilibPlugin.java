@@ -37,7 +37,7 @@ public class UbilibPlugin extends CordovaPlugin {
 			double mcr = Features.meanCrossingsRate(As);
 			double dev =Features.standardDeviation(As);
 			double rms =Features.rms(As);//均方根平均值
-			double sma =Features.sma(As);//信号幅值面
+			double sma =Features.sma(As,4.0/128.0);//信号幅值面
 			double iqr =Features.iqr(As);//四分卫距
 			double mad =Features.mad(As);//绝对平均差
 			double mean =Features.mean(As);//平均值
