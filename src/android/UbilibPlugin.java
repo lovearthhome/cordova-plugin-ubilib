@@ -79,12 +79,12 @@ public class UbilibPlugin extends CordovaPlugin {
 			
 			JSONArray asArray=new JSONArray();
 			for(int i=0;i<As.length;i++){
-				asArray.put(As[i]);
+				asArray.add(As[i]);
 			}
 			ja.put(asArray);
 			JSONArray fftArray=new JSONArray();
 			for(int i=0;i<fft.length;i++){
-				fftArray.put(fft[i]);
+				fftArray.add(fft[i]);
 			}
 			ja.put(fftArray);
 			//不要修改以下的代码
