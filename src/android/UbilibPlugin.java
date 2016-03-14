@@ -29,6 +29,17 @@ public class UbilibPlugin extends CordovaPlugin {
 				Zs[i]=z;
 				As[i]=Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
 			}
+			//medianFilter for each axes
+			double[] X=Features.medianFilter(Xs,5);
+			double[] Y=Features.medianFilter(Ys,5);
+			double[] Z=Features.medianFilter(Zs,5);
+			double[] A=new double[len];
+			for(int i=0;i<len;i++){
+				A[i]=Math.sqrt(Math.pow(X[i], 2) + Math.pow(Y[i], 2) + Math.pow(Z[i], 2));
+			}
+			double[] fft2=Features.fft(A);
+			
+			
 			//不要修改以上的代码
 			//接下来的代码调用Features.java来获取数组As,Xs,Ys,Zs的各种特征值
 			double[] fft=Features.fft(As);
@@ -87,6 +98,17 @@ public class UbilibPlugin extends CordovaPlugin {
 				fftArray.put(fft[i]);
 			}
 			ja.put(fftArray);
+			
+			JSONArray aArray=new JSONArray();
+			for(int i=0;i<A.length;i++){
+				aArray.put(A[i]);
+			}
+			ja.put(aArray);
+			JSONArray fft2Array=new JSONArray();
+			for(int i=0;i<fft2.length;i++){
+				fft2Array.put(fft2[i]);
+			}
+			ja.put(fft2Array);
 			//不要修改以下的代码
 			callbackContext.success(ja);
 			return true;
