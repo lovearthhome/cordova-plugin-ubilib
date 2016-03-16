@@ -30,13 +30,8 @@ public class UbilibPlugin extends CordovaPlugin {
 				As[i]=Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
 			}
 			//medianFilter for each axes
-			double[] X=Features.medianFilter(Xs,5);
-			double[] Y=Features.medianFilter(Ys,5);
-			double[] Z=Features.medianFilter(Zs,5);
-			double[] A=new double[len];
-			for(int i=0;i<len;i++){
-				A[i]=Math.sqrt(Math.pow(X[i], 2) + Math.pow(Y[i], 2) + Math.pow(Z[i], 2));
-			}
+			double[] A=Filters.medianFilter(As,5);
+			Filters.bandpassFilter(A,2,16);
 			double[] fft2=Features.fft(A);
 			
 			
