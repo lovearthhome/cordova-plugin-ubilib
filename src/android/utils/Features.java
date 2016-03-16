@@ -818,37 +818,5 @@ public class Features{
     	}
     	return sum/data.length;
     }
-	/*MedianFilter author MingyuYi*/
-	//支持偶数滤波，当滤波窗口是偶数的时候，L选大，R选小。如窗口大小为4时，L=2，R=1
-	//当filter窗口是偶数时候要以中间的两个数的平均值作为中位数。参考如下链接
-	//http://jingyan.baidu.com/article/425e69e69f07fbbe15fc161f.html
-	public static double[] medianFilter(double[] list,int len){
-		int L=0,R=0;        
-		if(len%2==0){
-			L=len/2;
-			R=len/2-1;
-		}else{
-			L=R=len/2;
-		}
-		double[] data=new double[list.length];
-		double[] filter=new double[len];
-		for(int i=0;i<list.length;i++){
-			for(int j=0;j<len;j++){
-				int p=i+j-L;
-				filter[j]=((p>=0)&&(p<list.length))?list[p]:0;
-			}
-			Arrays.sort(filter);
-			double mid = 0.0f;
-			if(len%2 == 0)
-			{
-				mid = (filter[len/2-1]+filter[len/2])/2.0;
-			}else{
-				
-				mid = filter[len/2];
-			}
-			data[i]=mid;
-		}
-		return data;
-	}
     
 }
