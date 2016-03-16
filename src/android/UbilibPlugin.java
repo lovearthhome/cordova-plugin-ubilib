@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import org.json.JSONException; 
 import java.util.ArrayList;
 
-
 public class UbilibPlugin extends CordovaPlugin {
 	public static final String ACTION_GP = "getParams";
 	public static final String ACTION_FFT = "fft";
