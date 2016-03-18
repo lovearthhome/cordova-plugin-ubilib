@@ -114,13 +114,13 @@ public class Filters{
 		// fft
 		Complex[] Y = FFT.fft(theList);
 		int N = Y.length;
-		double[] filter = new double[N];
+		double[] filter = new double[N/2];
 		//注意，fft频谱是对称的，要清理左右
 		//必须保证0分量不变，否则会丢失整个信号的直流分量
 		//举例，0-1-2-3-4-5-6-7
 		//0是直流分量，长度N=8，minp=1,maxp=2,那么 6 = 8 - maxp  7 = N - minp
 		filter[0] = 0.0f;
-		for (int i = 1; i < Y.length; i++) 
+		for (int i = 0; i < N/2; i++) 
 		{
 			filter[i] = Y[i].abs(); 
 		}
@@ -129,9 +129,12 @@ public class Filters{
 		 * 实部虚部除以 N
 		 * 绝对值乘以  2
 		 * 但我们仅仅是为了获取排序关系，所以不需要这么做了
+		 * 注意：arrays.sort是从小到大排序: 
 		 * */
 		Arrays.sort(filter);	
 
+		if(K >= N/2 ){K = N/2 -1;}
+		if(K <   0  ){K =  0;    }
 
 		double threshold = filter[K];
 
