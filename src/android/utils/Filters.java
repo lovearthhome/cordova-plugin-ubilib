@@ -136,7 +136,7 @@ public class Filters{
 		if(K >= N/2 ){K = N/2 -1;}
 		if(K <   0  ){K =  0;    }
 
-		double threshold = filter[K];
+		double threshold = filter[N/2 - K];//因为是从小到大排序，所以需要.
 
 		for (int i = 1; i < N; i++) {
 			if(Y[i].abs() < threshold)
