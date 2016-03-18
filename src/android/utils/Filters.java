@@ -99,5 +99,54 @@ public class Filters{
 			list[i] = X[i].re();
 		}
 		return list;
+	}
+
+	public static double[] sppsFilter(double[] list,int N/*频谱排序的大小*/){
+		int len=list.length;
+		Complex[] theList = new Complex[128];
+		for (int i = 0; i < len; i++) {
+			theList[i] = new Complex(list[i], 0);
+		}
+		for (int i = len; i < 128; i++) {
+			theList[i] = new Complex(0, 0);
+		}
+		
+		// fft
+		Complex[] Y = FFT.fft(theList);
+		int N = Y.length;
+		double[] filter = new double[N];
+		//注意，fft频谱是对称的，要清理左右
+		//必须保证0分量不变，否则会丢失整个信号的直流分量
+		//举例，0-1-2-3-4-5-6-7
+		//0是直流分量，长度N=8，minp=1,maxp=2,那么 6 = 8 - maxp  7 = N - minp
+		filter[0] = 0.0f;
+		for (int i = 1; i < Y.length; i++) 
+		{
+			filter[i] = Y[i].abs(); 
+		}
+		/*
+		 * 理应，还需要对fft的结果 
+		 * 实部虚部除以 N
+		 * 绝对值乘以  2
+		 * 但我们仅仅是为了获取排序关系，所以不需要这么做了
+		 * */
+		Arrays.sort(filter);	
+
+
+		double threshold = filter[N];
+
+		for (int i = 1; i < N; i++) {
+			if(Y[i].abs() < threashold)
+			{
+				Y[i] = new Complex(0, 0);
+			}
+		}
+
+		Complex[] X = FFT.ifft(Y);
+		for (int i = 0; i < X.length; i++) {
+			list[i] = X[i].re();
+		}
+		return list;
 	}	
+
 }
