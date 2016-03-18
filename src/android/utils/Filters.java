@@ -136,7 +136,7 @@ public class Filters{
 		double threshold = filter[K];
 
 		for (int i = 1; i < N; i++) {
-			if(Y[i].abs() < threashold)
+			if(Y[i].abs() < threshold)
 			{
 				Y[i] = new Complex(0, 0);
 			}
