@@ -31,7 +31,7 @@ public class UbilibPlugin extends CordovaPlugin {
 			//medianFilter for each axes
 			double[] A=Filters.medianFilter(As,5);
 			//Filters.bandpassFilter(A,2,32);
-			Filters.sppsFilter(A,8);
+			Filters.sppsFilter(A,4);
 			double[] fft2=Features.fft(A);
 			
 			
