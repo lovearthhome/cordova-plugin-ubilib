@@ -101,7 +101,7 @@ public class Filters{
 		return list;
 	}
 
-	public static double[] sppsFilter(double[] list,int N/*频谱排序的大小*/){
+	public static double[] sppsFilter(double[] list,int K/*频谱排序的大小*/){
 		int len=list.length;
 		Complex[] theList = new Complex[128];
 		for (int i = 0; i < len; i++) {
@@ -133,7 +133,7 @@ public class Filters{
 		Arrays.sort(filter);	
 
 
-		double threshold = filter[N];
+		double threshold = filter[K];
 
 		for (int i = 1; i < N; i++) {
 			if(Y[i].abs() < threashold)
