@@ -1,7 +1,7 @@
 /*
 日期:2015.09.30
-作者:魏代华
-功能：IOT特征层函数库
+作者:魏代华,焦帅
+功能：ubilib 特征层 
 */
 
 #ifndef Features_h
@@ -12,10 +12,10 @@
 class Features
 {
 		
-public:
+public :
     //1求数组最小值
 	template<typename T>
-	T miniNum(T data[], int length)
+	static T miniNum(T data[], int length)
 	{
 		T min = data[0];
 		for (int i = 1; i < length; i++)
@@ -25,7 +25,7 @@ public:
 
 	//2求数组最大值
 	template<typename T>
-	T maxiNum(T data[], int length)
+	static T maxiNum(T data[], int length)
 	{
 		T max = data[0];
 		for (int i = 1; i<length; i++)
@@ -35,7 +35,7 @@ public:
 
 	//3求数组的平均值
 	template<typename T>
-	T mean(T data[], int length)
+	static T mean(T data[], int length)
 	{
 		T sum = 0;
 		for (int i = 0; i < length; i++)
@@ -45,7 +45,7 @@ public:
 
 	//4求数组的加权均值
 	template<typename T>
-	T weightMean(T data[])
+	static T weightMean(T data[])
 	{
 		double sum = 0;
 		T result;
@@ -58,7 +58,7 @@ public:
 
 	//5求数组的标准差
 	template<typename T>
-	T standardDeviation(T data[], int length)
+	static T standardDeviation(T data[], int length)
 	{
 		T average = 0, s = 0, sum = 0;
 		for (int i = 0; i<length; i++)
@@ -77,7 +77,7 @@ public:
 
 	//6求信号向量幅值
 	template<typename T>
-	T signalVectorMagnitude(T data[], int length)
+	static T signalVectorMagnitude(T data[], int length)
 	{
 		T maxMagnitude = 0;
 		for (int i = 0; i < length; i++){
@@ -91,7 +91,7 @@ public:
 
 	//7求数组的中位数
 	template<typename T>
-	T median(T data[], int length)
+	static T median(T data[], int length)
 	{
 		T *copydata = new T[length];
 		for (int i = 0; i < length; i++)
@@ -122,7 +122,7 @@ public:
 
 	//8求数组1/4分位数
 	template<typename T>
-	T firstQuartile(T data[], int length)
+	static T firstQuartile(T data[], int length)
 	{
 		T *copydata = new T[length];
 		for (int i = 0; i < length; i++)
@@ -151,7 +151,7 @@ public:
 
 	//9求数组3/4分位数
 	template<typename T>
-	T thirdQuartile(T data[], int length)
+	static T thirdQuartile(T data[], int length)
 	{
 		T *copydata = new T[length];
 		for (int i = 0; i < length; i++)
@@ -180,7 +180,7 @@ public:
 
 	//10求数组过零率
 	template<typename T>
-	T zeroCrossingRate(T data[], int length)
+	static T zeroCrossingRate(T data[], int length)
 	{
 		T num = 0;
 		for (int i = 0; i < length - 1; i++)
@@ -194,7 +194,7 @@ public:
 
 	//11求数组过均值率
 	template<typename T>
-	T meanCrossingsRate(T data[], int length)
+	static T meanCrossingsRate(T data[], int length)
 	{
 		T sum = 0;
 		int num = 0;
@@ -220,7 +220,7 @@ public:
 
 	//12求相关系数
 	template<typename T>
-	T correlationCoefficient(T data1[], int length1, T data2[], int length2)
+	static T correlationCoefficient(T data1[], int length1, T data2[], int length2)
 	{
 		T mean1 = Features::mean(data1, length1);
 		T mean2 = Features::mean(data2, length2);
@@ -236,7 +236,7 @@ public:
 
 	//13特征规范化最值法
 	template<typename T>
-	T ** minMax(T data[][5], int r, int c)
+	static T ** minMax(T data[][5], int r, int c)
 	{
 		T **temp;//声明一个二维数组，用来存储处理过的数据
 		temp = new T*[c];
@@ -282,7 +282,7 @@ public:
 
 	//14特征规范化0-1法
 	template<typename T>
-	T ** zeroOne(T data[][5], int r, int c)
+	static T ** zeroOne(T data[][5], int r, int c)
 	{
 		T **temp;//声明一个二维数组，用来存储处理过的数据
 		temp = new T*[c];
@@ -321,7 +321,7 @@ public:
 
 	//15求数组的方差
 	template<typename T>
-	T variance(T data[], int length)
+	static T variance(T data[], int length)
 	{
 		if (length == 0) return 0;
 		T average = 0, s = 0, sum = 0;
@@ -340,7 +340,7 @@ public:
 
 	//16数组中的最大值所在的位置-谱峰位置
 	template<typename T>
-	T spectrumPeakPosition(T data[], int length)
+	static T spectrumPeakPosition(T data[], int length)
 	{
 		if (length == 0)return 0;
 		T max = data[0];
@@ -356,7 +356,7 @@ public:
 
 	//17频域能量
 	template<typename T>
-	T spectralEnergy(T data[], int length){
+	static T spectralEnergy(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T sum = 0;
 		for (int i = 0; i<length; i++){
@@ -367,7 +367,7 @@ public:
 
 	//18谱熵
 	template<typename T>
-	T spectralEntropy(T data[], int length){
+	static T spectralEntropy(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T temp;
 		T sum = 0;
@@ -382,7 +382,7 @@ public:
 
 	//19质心
 	template<typename T>
-	T centroid(T data[], int length){
+	static T centroid(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T sum1 = 0;
 		T sum2 = 0;
@@ -399,7 +399,7 @@ public:
 
 	//20均方根均值
 	template<typename T>
-	T rms(T data[], int length){
+	static T rms(T data[], int length){
 		T rms = 0;
 		T sum = 0;
 		for (int i = 0; i<length; i++){
@@ -411,7 +411,7 @@ public:
 
 	//21向量幅值面积 把离散值面积累加起来然后除以总长度。实际是平均每时刻的面积。
 	template<typename T>
-	T sma(T data[], int length, T interval){
+	static T sma(T data[], int length, T interval){
 		T sum = 0;
 		T lot = length * interval;
 		int i;
@@ -423,13 +423,13 @@ public:
 
 	//22四分卫距离
 	template<typename T>
-	T iqr(T data[], int length){
+	static T iqr(T data[], int length){
 		return Features::thirdQuartile(data, length) - Features::firstQuartile(data, length);
 	}
 
 	//23绝对平均值
 	template<typename T>
-	T  absMean(T data[], int length){
+	static T  absMean(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T meanD = mean(data, length);
 		T sum = 0;
@@ -442,7 +442,7 @@ public:
 
 	//24频域偏度
 	template<typename T>
-	T  frequencySkew(T data[], int length){
+	static T  frequencySkew(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T meanD = mean(data, length);
 		T dev = standardDeviation(data, length);
@@ -456,7 +456,7 @@ public:
 
 	//25频域峰度
 	template<typename T>
-	T  frequencyKurt(T data[], int length){
+	static T  frequencyKurt(T data[], int length){
 		if (data == NULL || length == 0) return 0;
 		T meanD = mean(data, length);
 		T dev = standardDeviation(data, length);
