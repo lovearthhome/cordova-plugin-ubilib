@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  id="cordova-ubilib"
+  id="cordova-plugin-ubilib"
     version="0.0.1">
     <name>Cordova ubilib plugin</name>
     <description>Native interface to ubicomputing math for PhoneGap/Cordova. Allows you to use more feature functions.</description>
