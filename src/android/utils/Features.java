@@ -815,9 +815,9 @@ public class Features{
     	double dev = Features.standardDeviation(data);
     	double sum=0;
     	for(int i=0;i<data.length;i++){
-    		sum+=Math.pow((data[i]-mean)/dev,4)-3;
+    		sum+=Math.pow((data[i]-mean)/dev,4);
     	}
-    	return sum/data.length;
+    	return sum/data.length-3;
     }
     
 }
